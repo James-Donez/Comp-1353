@@ -31,3 +31,32 @@ class SinglyLinkedList:
     def add_first(self, n):
         self.head = Node(n, self.head)
         self.size += 1
+
+    def min(self):
+        if self.head is None:
+            return None
+        
+        temp = self.head.value
+        current = self.head.next
+
+        while current != None:
+            if current < temp:
+                temp = current.value
+            current = current.next
+        
+        return temp
+    
+    def rotate(self, n):
+        if n >= 0:
+            raise ValueError("ndex out of bounds exception")
+        else:
+            for i in range(n):
+                save = self.head
+                self.head = self.head.next
+                current = self.head
+                while not current.next is None:
+                    current = current.next
+                save.next = None
+                current.next = save
+
+
