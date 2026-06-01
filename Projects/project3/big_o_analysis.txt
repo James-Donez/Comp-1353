@@ -1,0 +1,50 @@
+Project 3 Big-Oh Analysis
+
+The worst case for all three algorithms happens when the answer is false.
+In that situation, the algorithm cannot stop early because no value x has a
+matching value -x in the list.
+
+Algorithm 1: Sequential Search
+
+For each element in the list, the algorithm searches through the rest of the
+list one element at a time to look for its negative.
+
+If the list has n elements, the first search can check about n elements, the
+second search can check about n - 1 elements, the third can check about n - 2
+elements, and so on.
+
+This gives:
+
+n + (n - 1) + (n - 2) + ... + 1
+
+This sum is about n^2 / 2, so the constant 1/2 is dropped in Big-Oh notation.
+
+Worst-case Big-Oh: O(n^2)
+
+
+Algorithm 2: Binary Search
+
+For each element in the list, the algorithm uses binary search to look for its
+negative. Binary search repeatedly cuts the search range in half.
+
+One binary search takes about log2(n) steps in the worst case. Since binary
+search is done once for each of the n elements, the total work is:
+
+n * log2(n)
+
+Worst-case Big-Oh: O(n log n)
+
+
+Algorithm 3: Two Index Search
+
+This algorithm starts with one index at the beginning of the sorted list and
+one index at the end. Each loop checks the sum of the two indexed values.
+
+If the sum is less than 0, the left index moves forward. If the sum is greater
+than 0, the right index moves backward. Each loop moves one index closer to
+the other.
+
+Since the two indices can move at most n total times before they meet, the
+number of loop iterations grows linearly with the size of the list.
+
+Worst-case Big-Oh: O(n)
