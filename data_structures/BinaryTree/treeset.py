@@ -118,7 +118,7 @@ class TreeSet:
         pass
 
     def intersection(self, other):
-        pass
+        return None
 
     def _recursive_str(self, r, level):
         if r is None:
