@@ -134,12 +134,18 @@ class TreeSet:
         return self._recursive_str(self.root, 0)
     
 
-    def _printed_helper(self, r):
-        if r.left is not None:
-            return self._printed_helper(r.left)
+    def _sorted_recursive(self, r:TreeNode, sorted_values: list):
+        if r is None:
+            return
+        self._sorted_recursive(r.left, sorted_values)
+        sorted_values.append(r.value)
+        self._sorted_recursive(r.right, sorted_values)
+        
 
     def print_sorted(self):
-        return self._printed_helper(self.root)
+        sorted_values = []
+        self._sorted_recursive(self.root, sorted_values)
+        return sorted_values
     
     def _min_recursive(self, r:TreeNode):
         if r is None:
@@ -151,11 +157,12 @@ class TreeSet:
     def min(self):
         return self._min_recursive(self.root)
             
+    def _max_recursive(self, r:TreeNode):
+        if r is None:
+            return None
+        if r.right is not None:
+            return self._max_recursive(r.right)
+        return r.value
 
     def max(self):
-        if self.root is None:
-            return None
-        current = self.root
-        while current.right is not None:
-            current = current.right
-        return current.value
+        return self._max_recursive(self.root)
